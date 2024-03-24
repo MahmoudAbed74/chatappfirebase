@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'package:chatappfirebase/widgets/Custome_ElevatedButton.dart';
+import 'package:chatappfirebase/widgets/Custome_TextField.dart';
+
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
@@ -11,35 +14,22 @@ class LoginPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Image.asset(
-            "assets/images/logo.png",
-            fit: BoxFit.fill,
+            "assets/images/logo1.jpeg",
+            height: 200,
+            width: 200,
+            fit: BoxFit.scaleDown,
           ),
-          Text("Login", style: TextStyle(fontSize: 30)),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: TextField(
-              decoration: InputDecoration(
-                labelText: "Email",
-                hintText: "Enter Email",
-                prefixIcon: Icon(Icons.email),
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide(color: Colors.amberAccent)),
-                focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                    borderSide: BorderSide(color: Colors.green)),
-              ),
+          const Text("Login", style: TextStyle(fontSize: 30)),
+          const Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Custome_TextField(
+              hintText: "Email",
+              labelText: "Email",
+              prefixIcon: Icons.email,
             ),
           ),
-          ElevatedButton(
-            onPressed: () {},
-            child: Text(
-              "Login",
-              style: TextStyle(fontSize: 20, color: Colors.black),
-            ),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.red, // <-- Background color
-            ),
+          const Custome_ElevatedButton(
+            text: "Login",
           )
         ],
       ),
