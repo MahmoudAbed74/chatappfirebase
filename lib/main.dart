@@ -7,7 +7,6 @@ import 'package:chatappfirebase/views/RegisterPage.dart';
 
 import 'firebase_options.dart';
 
-// ...
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/login': (context) => const LoginPage(),
-        '/register': (context) => const ResisterPage(),
+        '/register': (context) => ResisterPage(),
       },
       initialRoute: '/login',
     );

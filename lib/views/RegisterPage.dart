@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
+import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:chatappfirebase/constants.dart';
 import 'package:chatappfirebase/widgets/Custome_ElevatedButton.dart';
 import 'package:chatappfirebase/widgets/Custome_TextField.dart';
 
 class ResisterPage extends StatelessWidget {
-  const ResisterPage({super.key});
+  ResisterPage({super.key});
   static String id_RegisterPage = "/register";
+  String? email;
+  String? password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +40,10 @@ class ResisterPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const Custome_TextField(
+            Custome_TextField(
+              onChanged: (data) {
+                email = data;
+              },
               hintText: "Email",
               labelText: "Email",
               prefixIcon: Icons.email,
@@ -44,7 +51,10 @@ class ResisterPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const Custome_TextField(
+            Custome_TextField(
+              onChanged: (data) {
+                password = data;
+              },
               hintText: "password",
               labelText: "password",
               prefixIcon: Icons.lock,
@@ -52,7 +62,42 @@ class ResisterPage extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            const Custome_ElevatedButton(
+            Custome_ElevatedButton(
+              onPressed: () async {
+                try {
+                  final UserCredential credential = await FirebaseAuth.instance
+                      .createUserWithEmailAndPassword(
+                    email: email!,
+                    password: password!,
+                  );
+                } on FirebaseAuthException catch (e) {
+                  if (e.code == 'weak-password') {
+                    // ignore: use_build_context_synchronously
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('The password provided is too weak.')));
+                  } else if (e.code == 'email-already-in-use') {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text(
+                            'The account already exists for that email.')));
+                  } else if (e.code == 'invalid-email') {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('The email is badly formatted.')));
+                  } else if (e.code == 'operation-not-allowed') {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('Operation is not allowed.')));
+                  } else if (e.code == 'user-disabled') {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('The user account has been disabled.')));
+                  } else if (e.code == 'user-not-found') {
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                        content: Text('The user does not exist.')));
+                    print('The user does not exist.');
+                  }
+                } catch (e) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(content: Text(e.toString())));
+                }
+              },
               text: "Login",
             ),
             Row(
