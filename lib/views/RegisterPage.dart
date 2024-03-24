@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:chatappfirebase/constants.dart';
-import 'package:chatappfirebase/views/RegisterPage.dart';
 import 'package:chatappfirebase/widgets/Custome_ElevatedButton.dart';
 import 'package:chatappfirebase/widgets/Custome_TextField.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
-  static String id_LoginPage = "/login";
+class ResisterPage extends StatelessWidget {
+  const ResisterPage({super.key});
+  static String id_RegisterPage = "/register";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +30,7 @@ class LoginPage extends StatelessWidget {
             const Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("Login", style: TextStyle(fontSize: 30)),
+                Text("Register", style: TextStyle(fontSize: 30)),
               ],
             ),
             const SizedBox(
@@ -60,14 +59,14 @@ class LoginPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text(
-                  "Don't have an account?",
+                  "I have an account?",
                   style: TextStyle(color: Colors.blue, fontSize: 15),
                 ),
                 TextButton(
                   onPressed: () {
-                    Navigator.pushNamed(context, ResisterPage.id_RegisterPage);
+                    Navigator.pop(context);
                   },
-                  child: const Text("Sign Up", style: TextStyle(fontSize: 15)),
+                  child: const Text("Login", style: TextStyle(fontSize: 15)),
                 )
               ],
             )
