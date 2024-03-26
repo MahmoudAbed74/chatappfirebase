@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'package:chatappfirebase/constants.dart';
+
 class Chat_Bubble extends StatelessWidget {
   const Chat_Bubble({
     super.key,
@@ -13,7 +15,7 @@ class Chat_Bubble extends StatelessWidget {
           margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
           padding: const EdgeInsets.all(16),
           decoration: const BoxDecoration(
-            color: Colors.blue,
+            color: kBlueColor,
             borderRadius: BorderRadius.only(
                 bottomRight: Radius.circular(20),
                 topRight: Radius.circular(20),
