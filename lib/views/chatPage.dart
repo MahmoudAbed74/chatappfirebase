@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:chatappfirebase/constants.dart';
 import 'package:chatappfirebase/widgets/chatBubble.dart';
 
 class ChatPage extends StatelessWidget {
@@ -25,7 +24,12 @@ class ChatPage extends StatelessWidget {
         ]),
         centerTitle: true,
       ),
-      body: Chat_Bubble(),
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (context, index) {
+          return const Chat_Bubble();
+        },
+      ),
     );
   }
 }

@@ -7,22 +7,22 @@ class Chat_Bubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.only(left: 15, top: 20),
-        height: 50,
-        width: 200,
-        alignment: Alignment.centerLeft,
-        padding: const EdgeInsets.only(left: 20),
-        decoration: const BoxDecoration(
-          color: Colors.amber,
-          borderRadius: BorderRadius.only(
-              bottomRight: Radius.circular(20),
-              topRight: Radius.circular(20),
-              topLeft: Radius.circular(20)),
-        ),
-        child: const Text(
-          "Chat Page",
-          style: TextStyle(color: Colors.white),
-        ));
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          padding: const EdgeInsets.all(16),
+          decoration: const BoxDecoration(
+            color: Colors.blue,
+            borderRadius: BorderRadius.only(
+                bottomRight: Radius.circular(20),
+                topRight: Radius.circular(20),
+                topLeft: Radius.circular(20)),
+          ),
+          child: const Text(
+            "Chat Page ",
+            style: TextStyle(color: Colors.white),
+          )),
+    );
   }
 }
