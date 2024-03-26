@@ -8,7 +8,6 @@ import 'package:chatappfirebase/views/chatPage.dart';
 
 import 'firebase_options.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -29,7 +28,7 @@ class MyApp extends StatelessWidget {
         '/register': (context) => ResisterPage(),
         "/chat": (context) => const ChatPage(),
       },
-      initialRoute: '/login',
+      initialRoute: '/chat',
     );
   }
 }
