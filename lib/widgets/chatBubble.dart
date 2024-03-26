@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:chatappfirebase/constants.dart';
 
 class Chat_Bubble extends StatelessWidget {
-  const Chat_Bubble({
+  const Chat_Bubble({ 
     super.key,
+    required this.messageText
   });
-
+final String messageText ;
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -21,9 +22,9 @@ class Chat_Bubble extends StatelessWidget {
                 topRight: Radius.circular(20),
                 topLeft: Radius.circular(20)),
           ),
-          child: const Text(
-            "Chat Page ",
-            style: TextStyle(color: Colors.white),
+          child:  Text(
+            messageText,
+            style:const TextStyle(color: Colors.white),
           )),
     );
   }
