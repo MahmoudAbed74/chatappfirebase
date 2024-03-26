@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import 'package:chatappfirebase/constants.dart';
 import 'package:chatappfirebase/helper/ShowSnackBar.dart';
 import 'package:chatappfirebase/views/RegisterPage.dart';
+import 'package:chatappfirebase/views/chatPage.dart';
 import 'package:chatappfirebase/widgets/Custome_ElevatedButton.dart';
 import 'package:chatappfirebase/widgets/Custome_TextField.dart';
 
@@ -85,7 +85,9 @@ class _LoginPageState extends State<LoginPage> {
                 onPressed: () async {
                   if (formKey.currentState!.validate()) {
                     isLoading = true;
+
                     setState(() {});
+
                     try {
                       await loginEmailAndPassword();
                       showSnackBar(context,
@@ -112,6 +114,10 @@ class _LoginPageState extends State<LoginPage> {
                         showSnackBar(context,
                             message: 'No user found for that email.');
                       }
+                      isLoading = false;
+
+                      setState(() {});
+                      Navigator.of(context).pushNamed(ChatPage.id_ChatPage);
                     } catch (e) {
                       showSnackBar(context, message: e.toString());
                     }

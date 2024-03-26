@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 
 import 'package:chatappfirebase/views/LoginPage.dart';
 import 'package:chatappfirebase/views/RegisterPage.dart';
+import 'package:chatappfirebase/views/chatPage.dart';
 
 import 'firebase_options.dart';
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => const LoginPage(),
         '/register': (context) => ResisterPage(),
+        "/chat": (context) => const ChatPage(),
       },
       initialRoute: '/login',
     );

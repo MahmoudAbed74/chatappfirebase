@@ -1,3 +1,4 @@
+import 'package:chatappfirebase/views/chatPage.dart';
 import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -118,6 +119,7 @@ class _ResisterPageState extends State<ResisterPage> {
                     }
                     isLoading = false;
                     setState(() {});
+                    Navigator.of(context).pushNamed(ChatPage.id_ChatPage);
                   },
                   text: "Resgister",
                 ),
