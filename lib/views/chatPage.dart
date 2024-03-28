@@ -6,21 +6,20 @@ import 'package:chatappfirebase/constants.dart';
 import 'package:chatappfirebase/model/messageModel.dart';
 import 'package:chatappfirebase/widgets/chatBubble.dart';
 
+// ignore: must_be_immutable
 class ChatPage extends StatelessWidget {
   ChatPage({super.key});
   static String id_ChatPage = "/chat";
   CollectionReference message =
       FirebaseFirestore.instance.collection(kMessages);
   TextEditingController controller = TextEditingController();
-  String? messageDate;
+  String? messageData;
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        // stream: message.orderBy(kDate, descending: true).snapshots(),
-        stream: message.snapshots(),
+        stream: message.orderBy(kDate, descending: false).snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasData) {
-            // print(snapshot.data!.docs[0][kMessages]);
             List<messageModel> messageList = [];
             for (int i = 0; i < snapshot.data!.docs.length; i++) {
               messageList.add(messageModel.fromJson(snapshot.data!.docs[i]));
@@ -63,17 +62,23 @@ class ChatPage extends StatelessWidget {
                     TextField(
                       controller: controller,
                       onChanged: (value) {
-                        messageDate = value;
+                        messageData = value;
                       },
                       onSubmitted: (data) {
-                        message.add({kMessages: data});
+                        message.add({
+                          kMessages: data,
+                          kDate: DateTime.now().toLocal(),
+                        });
                         controller.clear();
                       },
                       decoration: InputDecoration(
                           hintText: "Enter Message",
                           suffixIcon: IconButton(
                             onPressed: () {
-                              message.add({kMessages: messageDate});
+                              message.add({
+                                kMessages: messageData,
+                                kDate: DateTime.now().toLocal(),
+                              });
                               controller.clear();
                             },
                             icon: const Icon(Icons.send),
