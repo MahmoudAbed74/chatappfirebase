@@ -9,6 +9,7 @@ import 'package:chatappfirebase/widgets/chatBubble.dart';
 // ignore: must_be_immutable
 class ChatPage extends StatelessWidget {
   ChatPage({super.key});
+  final ScrollController _scrollController = ScrollController();
   static String id_ChatPage = "/chat";
   CollectionReference message =
       FirebaseFirestore.instance.collection(kMessages);
@@ -48,6 +49,7 @@ class ChatPage extends StatelessWidget {
                   children: [
                     Expanded(
                       child: ListView.builder(
+                        controller: _scrollController,
                         itemCount: snapshot.data!.docs.length,
                         itemBuilder: (context, index) {
                           return Chat_Bubble(
@@ -70,6 +72,11 @@ class ChatPage extends StatelessWidget {
                           kDate: DateTime.now().toLocal(),
                         });
                         controller.clear();
+                        _scrollController.animateTo(
+                          _scrollController.position.maxScrollExtent,
+                          duration: const Duration(milliseconds: 300),
+                          curve: Curves.easeOut,
+                        );
                       },
                       decoration: InputDecoration(
                           hintText: "Enter Message",
@@ -80,6 +87,11 @@ class ChatPage extends StatelessWidget {
                                 kDate: DateTime.now().toLocal(),
                               });
                               controller.clear();
+                              _scrollController.animateTo(
+                                _scrollController.position.maxScrollExtent,
+                                duration: const Duration(milliseconds: 300),
+                                curve: Curves.easeOut,
+                              );
                             },
                             icon: const Icon(Icons.send),
                           ),
