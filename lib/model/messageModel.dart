@@ -3,6 +3,7 @@ class messageModel {
   messageModel({required this.message});
 
   factory messageModel.fromJson(json) {
-    return messageModel(message: json['message']);
+    
+    return messageModel(message: json['messages']);
   }
 }
