@@ -15,8 +15,9 @@ class ChatPage extends StatelessWidget {
   String? messageDate;
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<QuerySnapshot>(
-        future: message.get(),
+    return StreamBuilder<QuerySnapshot>(
+        // stream: message.orderBy(kDate, descending: true).snapshots(),
+        stream: message.snapshots(),
         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
           if (snapshot.hasData) {
             // print(snapshot.data!.docs[0][kMessages]);
@@ -97,8 +98,10 @@ class ChatPage extends StatelessWidget {
                   ],
                 ));
           } else {
-            return const Center(
-              child: CircularProgressIndicator(),
+            return const Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
             );
           }
         });
