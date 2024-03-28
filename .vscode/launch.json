@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+
+        {
+            "name": "Android 11",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "emulator-5554"
+          },
+          {
+            "name": "Android 14",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "emulator-5556"
+          },
+        {
+            "name": "chatappfirebase",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "chatappfirebase (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "chatappfirebase (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+    ],
+        "compounds": [
+            {
+              "name": "All Devices",
+              "configurations": ["Android 11", "Android 14"]
+            },
+        ]
+      }
