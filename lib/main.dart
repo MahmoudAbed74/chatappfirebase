@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         '/register': (context) => ResisterPage(),
         "/chat": (context) => ChatPage(),
       },
-      initialRoute: '/chat',
+      initialRoute: '/login',
     );
   }
 }

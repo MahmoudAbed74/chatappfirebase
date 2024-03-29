@@ -83,45 +83,44 @@ class _LoginPageState extends State<LoginPage> {
               ),
               Custome_ElevatedButton(
                 onPressed: () async {
-                  if (formKey.currentState!.validate()) {
-                    isLoading = true;
+                  isLoading = true;
+
+                  setState(() {});
+
+                  try {
+                    await loginEmailAndPassword();
+                    showSnackBar(context,
+                        message: "Account created successfully");
+                  } on FirebaseAuthException catch (e) {
+                    if (e.code == 'weak-password') {
+                      showSnackBar(context,
+                          message: 'The password provided is too weak.');
+                    } else if (e.code == 'email-already-in-use') {
+                      showSnackBar(context,
+                          message:
+                              'The account already exists for that email.');
+                    } else if (e.code == 'invalid-email') {
+                      showSnackBar(context,
+                          message: 'The email address is badly formatted.');
+                    } else if (e.code == 'operation-not-allowed') {
+                      // ignore: use_build_context_synchronously
+                      showSnackBar(context, message: 'Operation not allowed.');
+                    } else if (e.code == 'user-disabled') {
+                      showSnackBar(context,
+                          message: 'The user account has been disabled.');
+                    } else if (e.code == 'user-not-found') {
+                      showSnackBar(context,
+                          message: 'No user found for that email.');
+                    }
+                    isLoading = false;
 
                     setState(() {});
-
-                    try {
-                      await loginEmailAndPassword();
-                      showSnackBar(context,
-                          message: "Account created successfully");
-                    } on FirebaseAuthException catch (e) {
-                      if (e.code == 'weak-password') {
-                        showSnackBar(context,
-                            message: 'The password provided is too weak.');
-                      } else if (e.code == 'email-already-in-use') {
-                        showSnackBar(context,
-                            message:
-                                'The account already exists for that email.');
-                      } else if (e.code == 'invalid-email') {
-                        showSnackBar(context,
-                            message: 'The email address is badly formatted.');
-                      } else if (e.code == 'operation-not-allowed') {
-                        // ignore: use_build_context_synchronously
-                        showSnackBar(context,
-                            message: 'Operation not allowed.');
-                      } else if (e.code == 'user-disabled') {
-                        showSnackBar(context,
-                            message: 'The user account has been disabled.');
-                      } else if (e.code == 'user-not-found') {
-                        showSnackBar(context,
-                            message: 'No user found for that email.');
-                      }
-                      isLoading = false;
-
-                      setState(() {});
-                      Navigator.of(context).pushNamed(ChatPage.id_ChatPage);
-                    } catch (e) {
-                      showSnackBar(context, message: e.toString());
-                    }
+                    Navigator.of(context)
+                        .pushNamed(ChatPage.id_ChatPage, arguments: email);
+                  } catch (e) {
+                    showSnackBar(context, message: e.toString());
                   }
+
                   isLoading = false;
                   setState(() {});
                 },
