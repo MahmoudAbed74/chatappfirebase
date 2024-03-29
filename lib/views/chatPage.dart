@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:chatappfirebase/constants.dart';
+import 'package:chatappfirebase/constants.dart';
+import 'package:chatappfirebase/constants.dart';
 import 'package:chatappfirebase/model/messageModel.dart';
 import 'package:chatappfirebase/widgets/chatBubble.dart';
+import 'package:chatappfirebase/widgets/chatBubbleForFriend.dart';
 
 // ignore: must_be_immutable
 class ChatPage extends StatelessWidget {
@@ -54,9 +57,12 @@ class ChatPage extends StatelessWidget {
                         controller: _scrollController,
                         itemCount: snapshot.data!.docs.length,
                         itemBuilder: (context, index) {
-                          return Chat_Bubble(
-                            messageText: snapshot.data!.docs[index][kMessages],
-                          );
+                          return messageList[index].sender == email ?
+                          
+                          Chat_Bubble(
+                            messageText: messageList[index].message, Sender: messageList[index].sender, dataTime: messageList[index].date.toString(),
+                          ) : 
+                          chatBubbleForFriend(messageText: messageList[index].message);
                         },
                       ),
                     ),
@@ -71,7 +77,7 @@ class ChatPage extends StatelessWidget {
                       onSubmitted: (data) {
                         message.add({
                           kMessages: data,
-                          kDate: DateTime.now().toLocal(),
+                          kDate: DateTime.now().toLocal().toString(),
                           kSender: email,
                         });
                         controller.clear();
@@ -87,7 +93,7 @@ class ChatPage extends StatelessWidget {
                             onPressed: () {
                               message.add({
                                 kMessages: messageData,
-                                kDate: DateTime.now().toLocal(),
+                                kDate: DateTime.now().toLocal().toString(),
                                 kSender: email,
                               });
                               controller.clear();
