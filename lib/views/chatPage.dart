@@ -57,12 +57,14 @@ class ChatPage extends StatelessWidget {
                         controller: _scrollController,
                         itemCount: snapshot.data!.docs.length,
                         itemBuilder: (context, index) {
-                          return messageList[index].sender == email ?
-                          
-                          Chat_Bubble(
-                            messageText: messageList[index].message, Sender: messageList[index].sender, dataTime: messageList[index].date.toString(),
-                          ) : 
-                          chatBubbleForFriend(messageText: messageList[index].message);
+                          return messageList[index].sender == email
+                              ? Chat_Bubble(
+                                  messageText: messageList[index].message,
+                                  Sender: messageList[index].sender,
+                                  dataTime: messageList[index].date.toString(),
+                                )
+                              : chatBubbleForFriend(
+                                  messageText: messageList[index].message);
                         },
                       ),
                     ),

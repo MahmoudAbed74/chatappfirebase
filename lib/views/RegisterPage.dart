@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import 'package:chatappfirebase/constants.dart';
-import 'package:chatappfirebase/views/RegisterPage.dart';
 import 'package:chatappfirebase/views/chatPage.dart';
 import 'package:chatappfirebase/widgets/Custome_ElevatedButton.dart';
 import 'package:chatappfirebase/widgets/Custome_TextField.dart';
@@ -78,6 +76,8 @@ class _ResisterPageState extends State<ResisterPage> {
                   hintText: "password",
                   labelText: "password",
                   prefixIcon: Icons.lock,
+                  obscureText: true,
+                
                 ),
                 const SizedBox(
                   height: 20,
@@ -119,7 +119,8 @@ class _ResisterPageState extends State<ResisterPage> {
                     }
                     isLoading = false;
                     setState(() {});
-                    Navigator.of(context).pushNamed(ChatPage.id_ChatPage,arguments: email);
+                    Navigator.of(context)
+                        .pushNamed(ChatPage.id_ChatPage, arguments: email);
                   },
                   text: "Resgister",
                 ),
