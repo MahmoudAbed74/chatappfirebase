@@ -42,7 +42,7 @@ class _LoginPageState extends State<LoginPage> {
                 height: 100,
               ),
               Image.asset(
-                "assets/images/logo1.jpeg",
+                kLogo,
                 height: 200,
                 width: 200,
                 fit: BoxFit.scaleDown,

@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:chatappfirebase/constants.dart';
-import 'package:chatappfirebase/constants.dart';
-import 'package:chatappfirebase/constants.dart';
 import 'package:chatappfirebase/model/messageModel.dart';
 import 'package:chatappfirebase/widgets/chatBubble.dart';
 import 'package:chatappfirebase/widgets/chatBubbleForFriend.dart';
@@ -37,9 +35,9 @@ class ChatPage extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Image.asset(
-                          "assets/images/logo1.jpeg",
-                          height: 20,
-                          width: 20,
+                          kLogo,
+                          height: 60,
+                          width: 100,
                           fit: BoxFit.scaleDown,
                         ),
                         const SizedBox(

@@ -8,3 +8,4 @@ const kBlueColor = Color(0xFF40BAD5) ;
 const kMessages = "messages" ;
 const kDate = "date";
 const kSender = "sender";
+const kLogo = "assets/images/logo.png" ;
